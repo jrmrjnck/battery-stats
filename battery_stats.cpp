@@ -201,8 +201,11 @@ class BatteryMonitor
             {
                 totalSuspendEnergy +=
                     (energy - std::prev(readings.end(), 2)->energy);
+
+                // relEnergy and rate only print something when we have multiple
+                // readings.
+                print("Sleep energy use", Stat::relEnergy | Stat::rate);
             }
-            print("Sleep energy use", Stat::relEnergy | Stat::rate);
             printSuspendStats = false;
         }
         else
